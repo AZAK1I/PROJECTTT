@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5ef">
+  <title>Damn Ang Lopit | Virtual Fitting Room</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#1d2b22;background:#f5f5ef;font-synthesis:none;text-rendering:optimizeLegibility;font-smooth:always;--ink:#1d2b22;--muted:#6d786f;--line:#e4e7df;--green:#294333;--sage:#eaf0e8;--paper:#fffefa}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 88% 9%,#e8eee4 0,transparent 30%),#f5f5ef}button,input{font:inherit}button{cursor:pointer}header{height:76px;padding:0 clamp(20px,6vw,84px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e6e8e1;background:#f9f9f5e8}.brand{display:flex;align-items:center;gap:11px;color:var(--ink);font-size:19px;font-weight:800;letter-spacing:-.055em}.brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;background:var(--green);color:white}.brand-mark svg{width:20px;height:20px}.brand-word span{color:#81977e}.top-note{display:flex;align-items:center;gap:8px;color:#707b71;font-size:12px;font-weight:600}.live-dot{width:7px;height:7px;border-radius:50%;background:#7c9b72;box-shadow:0 0 0 4px #7c9b721c}.mode-tabs{display:flex;width:max-content;max-width:calc(100% - 32px);justify-content:center;gap:4px;padding:5px;margin:26px auto 0;border:1px solid var(--line);border-radius:999px;background:#fffefa;box-shadow:0 8px 24px #2535220b}.mode-tab{min-height:42px;border:0;background:transparent;color:#707b71;border-radius:999px;padding:9px 20px;font-size:13px;font-weight:700;transition:.2s}.mode-tab:hover{color:var(--ink)}.mode-tab.active{background:var(--green);color:white;box-shadow:0 4px 12px #29433325}.layout{max-width:1190px;margin:auto;padding:38px 28px 58px;display:grid;grid-template-columns:minmax(330px,.82fr) minmax(0,1.18fr);gap:clamp(34px,6vw,78px);align-items:center}.copy{max-width:475px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#758873;font-size:10px;letter-spacing:.17em;font-weight:800;text-transform:uppercase}.eyebrow:before{content:"";width:18px;height:1px;background:#91a28e}.copy h1{font-size:clamp(46px,5.7vw,72px);line-height:.99;letter-spacing:-.075em;margin:18px 0 16px;color:var(--ink)}.copy h1 em{font-style:normal;color:#83977e}.copy>p{max-width:420px;margin:0;color:var(--muted);font-size:15px;line-height:1.75}.file-label{position:relative;display:flex;align-items:center;gap:13px;min-height:82px;margin:25px 0 15px;padding:14px 15px;border:1px dashed #b9c5b7;border-radius:16px;background:#fffefa;cursor:pointer;color:#344238;transition:.2s}.file-label:hover{border-color:#72896f;background:#fbfcf8;box-shadow:0 10px 28px #34452c10;transform:translateY(-1px)}.file-label:focus-within{outline:3px solid #9bb590;outline-offset:3px}.file-label input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.file-icon{flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:#edf2e9;color:#536f54}.file-icon svg{width:21px;height:21px}.file-text{min-width:0;flex:1}.file-text strong{display:block;font-size:12px;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-text small{display:block;margin-top:5px;color:#8a948a;font-size:10px;line-height:1.4}.upload-action{padding:8px 10px;border:1px solid #e3e8df;border-radius:9px;color:#526a52;background:#fff;font-size:11px;font-weight:700}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 8px}.primary,.secondary{min-height:46px;border:0;border-radius:999px;padding:0 20px;font-size:12px;font-weight:750;transition:transform .2s,box-shadow .2s,background .2s}.primary{background:var(--green);color:white;box-shadow:0 7px 17px #29433321}.primary:hover{background:#365640;transform:translateY(-1px);box-shadow:0 10px 22px #2943332a}.primary:disabled{opacity:.48;cursor:not-allowed;transform:none;box-shadow:none}.secondary{background:#e9ede6;color:#344638}.secondary:hover{background:#dfe7dc;transform:translateY(-1px)}.status{min-height:42px;margin-top:13px;padding:11px 13px;border:1px solid #e5e8e0;border-radius:12px;background:#fafbf7;color:#687469;font-size:11px;line-height:1.5}.status.error{border-color:#f0ddd7;background:#fbefeb;color:#8d4a3b}.status.success{border-color:#dce8d8;background:#edf5eb;color:#496b4b}.notice{margin-top:12px;padding:13px 14px;border:1px solid #eee8d9;border-left:3px solid #c4a96e;border-radius:0 12px 12px 0;background:#faf7ef;color:#74664b;font-size:10px;line-height:1.6}.notice strong{color:#5e533e}.disclosure{margin-top:13px;color:#90988f;font-size:10px;line-height:1.6}.preview-wrap{min-width:0}.stage{position:relative;min-height:560px;overflow:hidden;border:1px solid #fff;border-radius:28px;background:#e4eae1;box-shadow:0 24px 75px #34452c1b}.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.camera{transform:scaleX(-1)}.output{display:none;background:#111}.stage.connected .output{display:block}.stage.connected .local-preview{display:none}.local-preview{display:none}.stage.camera-on .local-preview{display:block}.stage.connected .local-preview{display:block;inset:auto;right:16px;bottom:16px;width:clamp(92px,23%,155px);height:auto;aspect-ratio:3/4;object-fit:cover;border:2px solid white;border-radius:15px;box-shadow:0 7px 22px #0003;z-index:3}.placeholder{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 32%,#fbfcf8,#e8eee5 67%,#d8e2d6);color:#657565;text-align:center}.placeholder.hide{display:none}.placeholder-copy{max-width:290px;padding:24px;color:#71806f;font-size:13px;line-height:1.7}.placeholder-icon{width:62px;height:62px;margin:0 auto 16px;display:grid;place-items:center;border:1px solid #fff;border-radius:21px;background:#ffffffbd;box-shadow:0 8px 24px #334b3410}.placeholder-icon svg{width:28px;height:28px}.placeholder-copy strong{display:block;margin-bottom:4px;color:#394a3b;font-size:14px}.cam-label{position:absolute;top:16px;left:16px;padding:9px 12px;border:1px solid #ffffffb8;border-radius:999px;background:#fffffff0;color:#394a3b;font-size:10px;font-weight:750;z-index:4;box-shadow:0 3px 12px #27362712}.cam-label:before{content:"";display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:50%;background:#b49d56}.stage.connected .cam-label:before{background:#6f9b68}.busy{position:absolute;inset:0;display:none;place-items:center;background:#17251d88;color:white;text-align:center;z-index:2;backdrop-filter:blur(3px)}.stage.connecting .busy{display:grid}.busy-inner{max-width:330px;padding:20px}.spinner{width:30px;height:30px;margin:0 auto 14px;border:3px solid #ffffff70;border-top-color:#fff;border-radius:50%;animation:spin .85s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.hint{position:absolute;right:16px;bottom:16px;max-width:55%;padding:9px 12px;border:1px solid #ffffffb8;border-radius:11px;background:#fffffff0;color:#566258;font-size:10px;line-height:1.4;z-index:4}.stage.connected .hint{bottom:auto;top:16px;right:16px}.tip{max-width:480px;margin:13px auto 0;color:#858f85;font-size:10px;line-height:1.55;text-align:center}.hide{display:none!important}.size-panel{max-width:720px;margin:36px auto 64px;padding:clamp(25px,5vw,48px);border:1px solid #e6e9e2;border-radius:26px;background:linear-gradient(145deg,#fffefa,#f8f9f4);box-shadow:0 24px 70px #34452c12}.size-panel .eyebrow{padding:8px 11px;border-radius:999px;background:#edf2e9;letter-spacing:.12em}.size-panel .eyebrow:before{width:7px;height:7px;border-radius:50%;background:#7d9877}.size-panel h2{max-width:520px;margin:16px 0 9px;font-size:clamp(30px,5vw,42px);line-height:1.05;letter-spacing:-.055em}.size-panel>p{max-width:560px;margin:0;color:#707a70;font-size:13px;line-height:1.7}.size-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:28px 0 19px}.size-grid label{color:#37443a;font-size:11px;font-weight:750}.size-grid input{display:block;width:100%;height:50px;margin-top:9px;padding:0 14px;border:1px solid #dfe4db;border-radius:12px;background:white;color:#243329;transition:border-color .2s,box-shadow .2s}.size-grid input::placeholder{color:#a0a79f}.size-grid input:focus{outline:0;border-color:#789274;box-shadow:0 0 0 4px #8eaa8426}.size-result{min-height:55px;margin-top:18px;padding:16px 18px;border:1px solid #dce6d8;border-radius:14px;background:#f0f5ed;color:#3b5740;font-size:13px;line-height:1.6}.size-result strong{color:#203a27;font-size:15px}.size-result.error{border-color:#f0ddd7;background:#fbefeb;color:#8d4a3b}.size-note{margin-top:18px!important;padding-top:15px;border-top:1px solid #e8ebe4;font-size:11px!important}.mode-tab:focus-visible,.primary:focus-visible,.secondary:focus-visible{outline:3px solid #9bb590;outline-offset:3px}@media(max-width:860px){.layout{grid-template-columns:1fr;max-width:690px;gap:28px;padding-top:30px}.copy{max-width:560px;margin:auto;text-align:center}.copy>p{margin:0 auto}.file-label{max-width:540px;margin:23px auto 14px;text-align:left}.buttons{justify-content:center}.status,.notice{max-width:540px;margin-left:auto;margin-right:auto;text-align:left}.disclosure{max-width:540px;margin-left:auto;margin-right:auto;text-align:left}.stage{min-height:500px}}@media(max-width:560px){header{height:66px;padding:0 18px}.top-note{font-size:0}.top-note .live-dot{margin-right:2px}.brand{font-size:17px}.mode-tabs{margin-top:19px}.mode-tab{padding:9px 14px;font-size:11px}.layout{gap:21px;padding:26px 16px 42px}.copy h1{font-size:49px}.copy>p{font-size:13px}.stage{min-height:410px;border-radius:22px}.stage.connected .local-preview{width:102px}.size-panel{margin:24px 16px 42px;padding:25px 21px;border-radius:21px}.size-grid{grid-template-columns:1fr;gap:14px;margin:22px 0 17px}.size-panel .primary{width:100%}}
+  .scan-panel{max-width:1060px}.scan-grid{display:grid;grid-template-columns:minmax(260px,.75fr) minmax(320px,1fr);gap:28px;align-items:start;margin-top:24px}.scan-controls{display:flex;flex-direction:column;gap:14px}.scan-height{display:block;color:#37443a;font-size:12px;font-weight:750}.scan-height input,.scan-height select{display:block;width:100%;height:48px;margin-top:8px;padding:0 13px;border:1px solid #dfe4db;border-radius:12px;background:#fff;font:inherit}.scan-steps{margin:0;padding:15px 17px 15px 34px;border:1px solid #e5e9e1;border-radius:14px;background:#fafbf7;color:#687469;font-size:12px;line-height:1.8}.scan-actions{display:flex;gap:8px;flex-wrap:wrap}.scan-actions button{min-height:42px;padding:0 15px;font-size:11px}.scan-status{min-height:45px;padding:12px 13px;border:1px solid #e2e6dd;border-radius:12px;background:#fafbf7;color:#687469;font-size:11px;line-height:1.5}.scan-progress{display:grid;grid-template-columns:1fr 1fr;gap:8px}.scan-shot{padding:11px;border:1px solid #e4e7df;border-radius:12px;background:#fff;color:#768076;font-size:11px}.scan-shot.done{border-color:#d5e4d1;background:#eff5ed;color:#466448}.scan-result{display:none;padding:15px;border:1px solid #dce6d8;border-radius:14px;background:#f0f5ed;color:#3b5740;font-size:13px;line-height:1.7}.scan-result.show{display:block}.scan-result strong{font-size:16px;color:#203a27}.scan-stage{position:relative;overflow:hidden;aspect-ratio:4/5;max-height:660px;border:1px solid #e1e6dd;border-radius:20px;background:radial-gradient(ellipse at 50% 35%,#f8faf5,#dfe7dc);box-shadow:0 14px 34px #34452c10}.scan-stage video,.scan-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}.scan-stage video,.scan-stage canvas{transform:scaleX(-1)}.scan-stage canvas{pointer-events:none}.scan-overlay{position:absolute;left:50%;top:50%;width:55%;height:88%;transform:translate(-50%,-50%);border:1px dashed #82967d8c;border-radius:48% 48% 22% 22%;pointer-events:none}.scan-label{position:absolute;top:12px;left:12px;padding:8px 10px;border:1px solid #ffffffb8;border-radius:999px;background:#fffffff0;color:#405140;font-size:10px;font-weight:700}.scan-placeholder{position:absolute;inset:0;display:grid;place-items:center;padding:26px;color:#6d796c;text-align:center;font-size:12px;line-height:1.6}.scan-video-on .scan-placeholder{display:none}.scan-note{margin-top:18px!important;padding-top:14px;border-top:1px solid #e8ebe4;color:#858f85!important;font-size:11px!important}.scan-tab{white-space:nowrap}@media(max-width:760px){.scan-grid{grid-template-columns:1fr}.scan-stage{grid-row:1;max-height:540px;aspect-ratio:4/5}.scan-controls{max-width:580px;width:100%;margin:auto}}@media(max-width:560px){.scan-panel{margin-left:12px;margin-right:12px;padding:22px 17px}.scan-stage{aspect-ratio:3/4}.mode-tab{padding-left:12px;padding-right:12px;font-size:10px}}.chart-import{margin-top:26px;padding:18px;border:1px solid #e3e8df;border-radius:16px;background:#fbfcf8}.chart-import h3{margin:0 0 5px;color:#2c3d31;font-size:14px}.chart-import p{margin:0 0 13px;color:#768176;font-size:11px;line-height:1.5}.chart-text{display:block;width:100%;min-height:118px;padding:12px;border:1px solid #dfe4db;border-radius:11px;background:white;color:#27392b;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical}.chart-text:focus{outline:0;border-color:#789274;box-shadow:0 0 0 4px #8eaa8426}.chart-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:11px}.chart-actions .primary,.chart-actions .secondary{min-height:39px;padding:0 14px;font-size:11px}.chart-drop{display:flex;align-items:center;gap:8px;min-height:39px;padding:0 12px;border:1px dashed #aebda9;border-radius:999px;background:#fff;color:#536c53;font-size:11px;font-weight:700;cursor:pointer}.chart-drop:hover,.chart-drop.dragover{border-color:#688465;background:#edf3eb}.chart-status{min-height:18px;margin-top:10px;color:#687469;font-size:11px;line-height:1.5}.chart-status.error{color:#9b4939}.chart-link{padding:0;border:0;background:none;color:#4d704e;font-size:11px;font-weight:750;text-decoration:underline;text-underline-offset:3px}.scan-chart-status{padding:10px 12px;border:1px solid #e4e7df;border-radius:11px;background:#fafbf7;color:#687469;font-size:11px;line-height:1.5}@keyframes panelIn{from{opacity:0;transform:translateY(12px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes softFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}@keyframes scanSweep{0%{top:12%;opacity:0}12%{opacity:.8}88%{opacity:.8}100%{top:88%;opacity:0}}@keyframes outlinePulse{0%,100%{border-color:#82967d8c;box-shadow:0 0 0 0 #82967d00}50%{border-color:#6b986c;box-shadow:0 0 0 5px #82967d20}}@keyframes resultPop{0%{opacity:0;transform:translateY(8px) scale(.98)}70%{transform:translateY(-2px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1)}}#tryOnPanel:not(.hide),#sizePanel:not(.hide),#scanPanel:not(.hide){animation:panelIn .38s cubic-bezier(.2,.7,.2,1) both}.brand-mark{transition:transform .25s,box-shadow .25s}.brand:hover .brand-mark{transform:rotate(-7deg) scale(1.06);box-shadow:0 7px 18px #29433335}.mode-tab{transition:background .24s,color .24s,box-shadow .24s,transform .24s}.mode-tab:hover{transform:translateY(-1px)}.file-icon{transition:transform .25s,background .25s}.file-label:hover .file-icon{transform:translateY(-2px) scale(1.06);background:#e2ecde}.placeholder-icon{animation:softFloat 3.2s ease-in-out infinite}.stage{transition:box-shadow .3s,border-color .3s}.stage.connected{box-shadow:0 25px 78px #34452c2a}.primary,.secondary{transition:background .2s,transform .2s,box-shadow .2s}.size-result.result-pop,.scan-result.show{animation:resultPop .38s cubic-bezier(.2,.7,.2,1) both}.scan-shot{transition:background .25s,border-color .25s,transform .25s}.scan-shot.done{transform:translateY(-2px);animation:resultPop .32s ease both}.scan-overlay{z-index:2;transition:border-color .3s,box-shadow .3s}.scan-stage.scan-active .scan-overlay{animation:outlinePulse 2s ease-in-out infinite}.scan-stage:after{content:"";position:absolute;z-index:3;left:8%;right:8%;top:12%;height:2px;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,#b9e9ac,#fff,#b9e9ac,transparent);box-shadow:0 0 15px #b9e9ac;transition:opacity .2s}.scan-stage.scan-active:after{opacity:1;animation:scanSweep 2.8s ease-in-out infinite}.scan-label{z-index:4}.scan-status{transition:background .2s,color .2s}.chart-import{transition:border-color .25s,box-shadow .25s}.chart-import:focus-within{border-color:#cbd8c6;box-shadow:0 8px 24px #34452c0c}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}.credits{max-width:1190px;margin:0 auto;padding:20px 28px 28px;border-top:1px solid #e2e6de;color:#7c867c;font-size:10px;line-height:1.8;text-align:center}.credits strong{color:#536454;font-weight:750}.credits span{display:inline-block;margin:0 8px}@media(max-width:560px){.credits{padding:18px 16px 24px}.credits span{display:block;margin:2px 0}}.credits-toggle{padding:4px 8px;border:0;border-radius:999px;background:transparent;color:#8b948a;font:inherit;font-size:10px;letter-spacing:.04em;cursor:pointer;transition:color .2s,background .2s}.credits-toggle:hover{color:#536454;background:#edf2e9}.credits-toggle:focus-visible{outline:2px solid #9bb590;outline-offset:2px}.credits-details{display:flex;justify-content:center;flex-wrap:wrap;gap:3px 14px;margin:10px auto 0}.credits-details[hidden]{display:none!important}.credits-details:not([hidden]){animation:panelIn .25s ease both}.credits-details span{margin:0}@media(max-width:560px){.credits-details{flex-direction:column;gap:3px}}
+/* Responsive layouts: desktop, tablet and phone */
+img, video, canvas { max-width: 100%; }
+.layout, .size-panel, .scan-grid, .chart-import { min-width: 0; }
+.size-grid > *, .scan-controls > *, .chart-actions > * { min-width: 0; }
+input, select, textarea, button { max-width: 100%; }
+
+@media (min-width: 861px) and (max-width: 1100px) {
+  .layout { grid-template-columns: minmax(290px, .9fr) minmax(0, 1.1fr); gap: 30px; padding: 34px 24px 48px; }
+  .copy h1 { font-size: clamp(44px, 5vw, 60px); }
+  .stage { min-height: clamp(400px, 53vw, 510px); }
+  .size-panel { margin-left: 24px; margin-right: 24px; }
+  .scan-panel { margin-left: 22px; margin-right: 22px; }
+  .scan-grid { grid-template-columns: minmax(250px, .85fr) minmax(280px, 1fr); gap: 20px; }
+}
+
+@media (max-width: 860px) {
+  .layout { width: 100%; grid-template-columns: minmax(0, 1fr); }
+  .copy, .preview-wrap { width: 100%; min-width: 0; }
+  .stage { width: 100%; min-height: clamp(380px, 72vw, 520px); }
+  .size-panel, .scan-panel { width: calc(100% - 32px); }
+}
+
+@media (max-width: 760px) {
+  .scan-grid { grid-template-columns: minmax(0, 1fr); }
+  .scan-stage { grid-row: 1; width: 100%; }
+  .scan-controls { width: 100%; }
+  .scan-actions button { min-height: 44px; }
+}
+
+@media (max-width: 560px) {
+  body { min-width: 320px; }
+  header { min-height: 64px; height: auto; padding: 11px 16px; gap: 10px; }
+  .brand { min-width: 0; gap: 8px; font-size: clamp(14px, 4vw, 17px); }
+  .brand-mark { flex: 0 0 34px; width: 34px; height: 34px; }
+  .top-note { flex: 0 0 auto; white-space: nowrap; }
+  .mode-tabs { width: calc(100% - 24px); max-width: none; gap: 2px; padding: 4px; }
+  .mode-tab { flex: 1 1 0; min-width: 0; min-height: 42px; padding: 8px 5px; font-size: clamp(9px, 2.7vw, 11px); white-space: nowrap; }
+  .layout { padding: 24px 14px 36px; }
+  .copy h1 { font-size: clamp(40px, 12vw, 52px); }
+  .copy > p { font-size: 14px; }
+  .file-label { gap: 9px; padding: 12px 10px; }
+  .file-text strong { max-width: min(48vw, 240px); }
+  .upload-action { padding: 8px; }
+  .stage { min-height: 0; aspect-ratio: 4 / 5; max-height: 72vh; border-radius: 20px; }
+  .stage.connected .local-preview { width: clamp(78px, 24vw, 102px); }
+  .hint { max-width: 68%; }
+  .size-panel, .scan-panel { width: calc(100% - 24px); margin: 22px 12px 38px; padding: 22px 16px; }
+  .size-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .size-grid input, .scan-height input, .scan-height select { min-height: 48px; font-size: 16px; }
+  .size-panel .primary { width: 100%; }
+  .chart-import { padding: 14px; }
+  .chart-actions { align-items: stretch; }
+  .chart-actions button, .chart-drop { justify-content: center; min-height: 44px; }
+  .chart-drop { flex: 1 1 100%; text-align: center; }
+  .scan-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scan-actions button { width: 100%; padding-inline: 10px; }
+  .scan-stage { aspect-ratio: 3 / 4; max-height: 62vh; }
+  .credits { padding: 16px 12px 22px; }
+}
+
+@media (max-width: 360px) {
+  .top-note { display: none; }
+  .mode-tab { font-size: 9px; }
+  .scan-actions { grid-template-columns: minmax(0, 1fr); }
+  .scan-progress { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+  <script type="module" crossorigin src="/assets/index-fLrASBB-.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4a2.25 2.25 0 1 0-2.25 2.25M12 4l8 7.2a1 1 0 0 1-.67 1.75H4.67A1 1 0 0 1 4 11.2L9.75 6.25" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 16h10M9 19h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="brand-word">DAMN ANG LOPIT</span></div>
+    <div class="top-note"><span class="live-dot"></span>VIRTUAL FITTING ROOM</div>
+  </header>
+  <nav class="mode-tabs" aria-label="Features"><button class="mode-tab active" id="tryOnTab" type="button" aria-selected="true">Live Try-On</button><button class="mode-tab" id="sizeTab" type="button" aria-selected="false">Find Your Size</button><button class="mode-tab scan-tab" id="scanTab" type="button" aria-selected="false">Body Scan</button></nav>
+  <main class="layout" id="tryOnPanel">
+    <section class="copy">
+      <div class="eyebrow">VIRTUAL FITTING ROOM</div>
+      <h1>Find your<br>next <em>look.</em></h1>
+      <p>Upload a clothing photo and see how it looks on you with a live AI try-on.</p>
+      <label class="file-label"><input id="garmentInput" type="file" accept="image/png,image/jpeg,image/webp" aria-label="Choose a clothing photo"><span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="file-text"><strong id="garmentName">Choose a clothing photo</strong><small>PNG, JPG or WebP. A clear, full garment photo works best.</small></span><span class="upload-action">Browse</span></label>
+      <div class="buttons"><button class="primary" id="startBtn">Start try-on <span aria-hidden="true">&rarr;</span></button><button class="secondary hide" id="stopBtn">Stop</button></div>
+      <div class="status" id="status" aria-live="polite">Choose a garment to get started. Camera access will be requested.</div>
+      <div class="notice"><strong>Live session cost:</strong> 720p mode uses 2 Decart credits per second. Your camera video and selected garment photo are sent to Decart while the session is active.</div>
+      <div class="disclosure">Your API key stays on the local server. An internet connection and camera access are required.</div>
+    </section>
+    <section class="preview-wrap" aria-label="Live preview"><div class="stage" id="stage"><video class="output" id="outputVideo" autoplay playsinline></video><video class="camera local-preview" id="localVideo" autoplay playsinline muted></video><div class="placeholder" id="placeholder"><div class="placeholder-copy"><div class="placeholder-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7.5h3l1.4-2h7.2l1.4 2h3A1.5 1.5 0 0 1 21.5 9v9a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="13" r="3.5" stroke="currentColor" stroke-width="1.5"/></svg></div><strong>Your preview will appear here</strong>Upload a garment and start your live try-on.</div></div><div class="cam-label" id="camLabel">Camera off</div><div class="busy"><div class="busy-inner"><div class="spinner"></div><strong>Connecting to live AI...</strong><div style="margin-top:8px;font-size:12px">Please wait while your preview is prepared.</div></div></div><div class="hint" id="hint">Choose a garment photo first</div></div><div class="tip">Tip: Find a bright spot and keep your upper body in view of the camera.</div></section>
+  </main>
+  <section class="size-panel hide" id="sizePanel" aria-labelledby="sizeHeading"><div class="eyebrow">SIZE ASSISTANT</div><h2 id="sizeHeading">Find your estimated size</h2><p>Enter your body measurements in centimeters. Your recommendation is based on the largest measurement you enter.</p><form id="sizeForm"><div class="size-grid"><label for="chestInput">Chest (cm)<input id="chestInput" type="number" min="50" max="180" step="0.5" placeholder="e.g. 92" required></label><label for="waistInput">Waist (cm)<input id="waistInput" type="number" min="40" max="160" step="0.5" placeholder="e.g. 76" required></label><label for="hipInput">Hips (cm)<input id="hipInput" type="number" min="50" max="180" step="0.5" placeholder="e.g. 98" required></label></div><button class="primary" type="submit">Get my estimated size</button></form><div class="size-result" id="sizeResult" role="status" aria-live="polite">Your closest size recommendation will appear here.</div><p class="size-note">Without a product chart, this gives a general size estimate. Brand sizing varies.</p><div class="chart-import" id="chartImport"><h3>Use a product size chart <span style="color:#879187;font-weight:500">(optional)</span></h3><p>Paste the copied chart, upload a CSV/TSV, or choose a chart screenshot (PNG/JPG/WebP). OCR reads it in your browser; review the text before applying. Use centimeters. Example: <code>Size,Chest,Waist,Hips</code></p><textarea class="chart-text" id="sizeChartText" placeholder="Size,Chest,Waist,Hips&#10;S,86,70,92&#10;M,94,78,100&#10;L,102,86,108" aria-label="Paste product size chart"></textarea><div class="chart-actions"><button class="primary" id="applyChartBtn" type="button">Use this chart</button><label class="chart-drop" for="chartFile" id="chartDrop">Drop a chart image or choose CSV/TSV<input id="chartFile" type="file" accept=".csv,.tsv,.txt,.png,.jpg,.jpeg,.webp,text/csv,text/tab-separated-values,image/png,image/jpeg,image/webp" hidden></label><button class="secondary" id="clearChartBtn" type="button">Clear chart</button></div><div class="chart-status" id="chartStatus" role="status" aria-live="polite">No product chart added. The general size guide is active.</div></div></section>
+  <section class="size-panel scan-panel hide" id="scanPanel" aria-labelledby="scanHeading"><div class="eyebrow">Camera body scan</div><h2 id="scanHeading">Estimate your waist measurement</h2><p>Enter your height to calibrate the scan. The camera estimates waist only; add a product chart or usual size for a size suggestion.</p><div class="scan-grid"><div class="scan-controls"><label class="scan-height" for="scanHeight">Your height for calibration (cm)<input id="scanHeight" type="number" min="120" max="220" step="1" placeholder="e.g. 170" required></label><label class="scan-height" for="scanSizeCalibration">Usual size for personalization (optional)<select id="scanSizeCalibration"><option value="">Not set</option><option value="XS">XS (Extra Small)</option><option value="S">S (Small)</option><option value="M">M (Medium)</option><option value="L">L (Large)</option><option value="XL">XL (Extra Large)</option><option value="XXL">XXL</option></select></label><ol class="scan-steps"><li>Place your phone at waist height, about 2-3 meters away.</li><li>Stand straight with your full body and feet visible.</li><li>Keep your arms slightly away from your waist.</li><li>Face the camera and hold still for automatic capture.</li><li>Turn 90 degrees to the side and hold still for the second capture.</li></ol><div class="scan-actions"><button class="primary" id="scanStartBtn" type="button">Start camera</button><button class="secondary" id="scanCaptureBtn" type="button" disabled>Capture now (optional)</button><button class="secondary hide" id="scanStopBtn" type="button">Stop camera</button></div><div class="scan-status" id="scanStatus" role="status" aria-live="polite">Enter your height, then start the camera. Front and side views capture automatically.</div><div class="scan-progress"><div class="scan-shot" id="frontShot">1. Front view</div><div class="scan-shot" id="sideShot">2. Side view</div></div><div class="scan-result" id="scanResult" aria-live="polite"></div></div><div class="scan-stage" id="scanStage"><video id="scanVideo" autoplay playsinline muted></video><canvas id="scanCanvas"></canvas><div class="scan-overlay"></div><div class="scan-label">Full body view</div><div class="scan-placeholder" id="scanPlaceholder">Start the camera and stand inside the outline.</div></div></div><div class="scan-chart-status" id="scanChartStatus">No product size chart added. Add one in Find Your Size for a chart-based suggestion.</div><button class="chart-link" id="chartLink" type="button">Add or update a product size chart</button><p class="scan-note">This is a rough estimate, not a body measurement or clothing-size guarantee. Camera angle, distance, clothing, and posture affect results. Your camera frames are processed in this browser and are not sent to the try-on service.</p></section>
+  <footer class="credits" aria-label="Project credits"><button class="credits-toggle" id="creditsToggle" type="button" aria-expanded="false" aria-controls="creditsDetails">Credits</button><div class="credits-details" id="creditsDetails" hidden><span><strong>Members:</strong> Prince Eldrien P. Miñon, Sarah Salamero, Kim De Guzman, Julian Kurvy Tano</span><span><strong>Program:</strong> BSENT 2-1</span></div></footer>
+  <script>
+(() => {
+  const tryPanel = document.getElementById('tryOnPanel');
+  const sizePanel = document.getElementById('sizePanel');
+  const scanPanel = document.getElementById('scanPanel');
+  const tryTab = document.getElementById('tryOnTab');
+  const sizeTab = document.getElementById('sizeTab');
+  const scanTab = document.getElementById('scanTab');
+  const sizeForm = document.getElementById('sizeForm');
+  const sizeResult = document.getElementById('sizeResult');
+  const creditsToggle = document.getElementById('creditsToggle');
+  const creditsDetails = document.getElementById('creditsDetails');
+  const sizeChartText = document.getElementById('sizeChartText');
+  const chartFile = document.getElementById('chartFile');
+  const chartDrop = document.getElementById('chartDrop');
+  const chartStatus = document.getElementById('chartStatus');
+  const scanChartStatus = document.getElementById('scanChartStatus');
+  let productSizeChart = [];
+  let tesseractPromise = null;
+  creditsToggle.addEventListener('click', () => {
+    creditsDetails.hidden = !creditsDetails.hidden;
+    creditsToggle.setAttribute('aria-expanded', String(!creditsDetails.hidden));
+  });
+  function showPanel(mode) {
+    if (mode !== 'scan' && scanStream) {
+      stopBodyScan();
+      scanStatus.textContent = 'Camera stopped.';
+    }
+    const showSize = mode === 'size';
+    const showScan = mode === 'scan';
+    tryPanel.classList.toggle('hide', showSize || showScan);
+    sizePanel.classList.toggle('hide', !showSize);
+    scanPanel.classList.toggle('hide', !showScan);
+    [[tryTab, mode === 'try'], [sizeTab, showSize], [scanTab, showScan]].forEach(([tab, active]) => {
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
+    });
+  }
+  tryTab.addEventListener('click', () => showPanel('try'));
+  sizeTab.addEventListener('click', () => showPanel('size'));
+  scanTab.addEventListener('click', () => showPanel('scan'));
+  document.getElementById('chartLink').addEventListener('click', () => {
+    showPanel('size');
+    document.getElementById('chartImport').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  function parseChartNumber(value, inches) {
+    const numbers = String(value || '').match(/\d+(?:\.\d+)?/g);
+    if (!numbers) return null;
+    const amount = Number(numbers[numbers.length - 1]);
+    return Number.isFinite(amount) ? amount * (inches ? 2.54 : 1) : null;
+  }
+
+  function parseSizeChart(text) {
+    const lines = text.trim().split(/\r?\n/).filter((line) => line.trim());
+    if (lines.length < 2) return [];
+    const split = (line) => line.includes('\t') ? line.split('\t') : line.includes(',') ? line.split(',') : line.trim().split(/\s+/);
+    const first = split(lines[0]).map((cell) => cell.replace(/^\s*"|"\s*$/g, '').trim().toLowerCase());
+    const hasHeader = first.some((cell) => /size|chest|bust|waist|hip/.test(cell));
+    const headers = hasHeader ? first : ['size', 'chest', 'waist', 'hips'];
+    const findColumn = (pattern, fallback) => {
+      const index = headers.findIndex((cell) => pattern.test(cell));
+      return index >= 0 ? index : fallback;
+    };
+    const columns = {
+      size: findColumn(/size|label/, 0),
+      chest: findColumn(/chest|bust/, -1),
+      waist: findColumn(/waist/, -1),
+      hips: findColumn(/hip/, -1),
+    };
+    if (!hasHeader) { columns.chest = 1; columns.waist = 2; columns.hips = 3; }
+    const rows = hasHeader ? lines.slice(1) : lines;
+    return rows.map((line) => split(line).map((cell) => cell.replace(/^\s*"|"\s*$/g, '').trim()))
+      .map((cells) => {
+        const size = cells[columns.size];
+        if (!size) return null;
+        const valueFor = (dimension, index) => index < 0 ? null : parseChartNumber(cells[index], /\bin(?:ch(?:es)?)?\b|\"|″/.test(headers[index] || ''));
+        const values = { chest: valueFor('chest', columns.chest), waist: valueFor('waist', columns.waist), hips: valueFor('hips', columns.hips) };
+        return Object.values(values).some((value) => value !== null) ? { size, ...values } : null;
+      }).filter(Boolean);
+  }
+
+  function recommendFromChart(measurements) {
+    if (!productSizeChart.length) return null;
+    const dimensions = ['chest', 'waist', 'hips'].filter((key) => Number(measurements[key]) > 0);
+    const candidates = productSizeChart.map((row) => ({ row, compared: dimensions.filter((key) => row[key] !== null) }))
+      .filter(({ compared }) => compared.length > 0);
+    const fit = candidates.find(({ row, compared }) => compared.every((key) => Number(measurements[key]) <= row[key]));
+    return fit ? fit.row.size : `No chart size fits; largest listed: ${productSizeChart[productSizeChart.length - 1].size}`;
+  }
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+  }
+
+  function cleanOcrChartText(text) {
+    const lines = text.split(/\r?\n/).map((line) => line.replace(/[|¦]/g, ' ').replace(/\s+/g, ' ').trim()).filter(Boolean);
+    const headerPattern = /\b(size|chest|bust|waist|hip|hips)\b/gi;
+    const sizePattern = /(?:\b(?:one\s+size|free\s+size|osfm|os)\b|\b(?:(?:petite|tall|plus|regular)\s+)?(?:XXXXS|XXXS|XXS|XS|S|M|L|XL|XXL|XXXL|XXXXL|[0-9]{1,2}(?:X|T|P|W)(?:XXS|XS|S|M|L|XL|XXL)?)\b|\b(?:petite|tall|plus|regular|extra\s+small|small|medium|large|extra\s+large)\b)/i;
+    const numberPattern = /\d+(?:[.,]\d+)?(?:\s*[-–]\s*\d+(?:[.,]\d+)?)?/g;
+    const header = lines.find((line) => (line.match(headerPattern) || []).length >= 2);
+    const sizeRows = [];
+    for (const originalLine of lines) {
+      const line = originalLine.replace(/^size\s*[:#-]?\s*/i, '').trim();
+      if (line === header) continue;
+      const firstNumber = line.search(/\d/);
+      if (firstNumber >= 0) {
+        const prefix = line.slice(0, firstNumber).trim();
+        const namedSize = prefix.match(sizePattern);
+        if (namedSize) {
+          const values = line.slice(firstNumber).match(numberPattern) || [];
+          if (values.length) sizeRows.push(`${namedSize[0].trim()},${values.join(',')}`);
+          continue;
+        }
+      }
+      const leadingSize = line.match(/^\s*(?:\d{1,2}(?:X|T|P|W)(?:XXS|XS|S|M|L|XL|XXL)?|\d{1,3})\b/i);
+      if (leadingSize) {
+        const values = line.slice(leadingSize[0].length).match(numberPattern) || [];
+        if (values.length >= 2) sizeRows.push(`${leadingSize[0].trim()},${values.join(',')}`);
+      }
+    }
+    const kept = [...(header ? [header] : []), ...sizeRows];
+    return { text: kept.join('\n'), removed: lines.length - kept.length, kept: kept.length };
+  }
+
+  function loadTesseract() {
+    if (window.Tesseract?.createWorker) return Promise.resolve(window.Tesseract);
+    if (!tesseractPromise) {
+      tesseractPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+        script.onload = () => {
+          if (window.Tesseract?.createWorker) resolve(window.Tesseract);
+          else { tesseractPromise = null; reject(new Error('The OCR library loaded without its worker API.')); }
+        };
+        script.onerror = () => { tesseractPromise = null; reject(new Error('Could not load OCR from the internet.')); };
+        document.head.appendChild(script);
+      });
+    }
+    return tesseractPromise;
+  }
+
+  function applyProductChart() {
+    productSizeChart = parseSizeChart(sizeChartText.value);
+    if (!productSizeChart.length) {
+      chartStatus.textContent = 'Could not read the chart. Use rows like Size,Chest,Waist,Hips then S,86,70,92.';
+      chartStatus.classList.add('error');
+      scanChartStatus.textContent = 'No product size chart added. Add one in Find Your Size for a chart-based suggestion.';
+      return;
+    }
+    chartStatus.classList.remove('error');
+    chartStatus.textContent = `Product chart ready: ${productSizeChart.length} sizes. It will be used by manual sizing and Body Scan.`;
+    scanChartStatus.textContent = productSizeChart.some((row) => row.waist !== null)
+      ? `Product chart active: Body Scan will suggest a size using the chart waist column (${productSizeChart.length} sizes).`
+      : 'Chart loaded, but it has no waist column. Body Scan can still show the waist estimate.';
+  }
+
+  document.getElementById('applyChartBtn').addEventListener('click', applyProductChart);
+  document.getElementById('clearChartBtn').addEventListener('click', () => {
+    productSizeChart = [];
+    sizeChartText.value = '';
+    chartFile.value = '';
+    chartStatus.classList.remove('error');
+    chartStatus.textContent = 'No product chart added. The general size guide is active.';
+    scanChartStatus.textContent = 'No product size chart added. Add one in Find Your Size for a chart-based suggestion.';
+  });
+  async function loadChartFile(file) {
+    if (!file) return;
+    chartFile.value = '';
+    if (file.size > 12 * 1024 * 1024) {
+      chartStatus.textContent = 'This file is too large. Choose a chart image under 12 MB.';
+      chartStatus.classList.add('error');
+      return;
+    }
+    chartStatus.classList.remove('error');
+    if (file.type.startsWith('image/') || /\.(png|jpe?g|webp)$/i.test(file.name)) {
+      let worker;
+      let imageUrl;
+      try {
+        chartStatus.textContent = 'Loading browser OCR and reading the chart image...';
+        const Tesseract = await loadTesseract();
+        worker = await Tesseract.createWorker('eng');
+        imageUrl = URL.createObjectURL(file);
+        const image = new Image();
+        image.src = imageUrl;
+        await image.decode();
+        const { data } = await worker.recognize(image);
+        const cleaned = cleanOcrChartText(data.text);
+        sizeChartText.value = cleaned.text;
+        if (!cleaned.kept) {
+          chartStatus.textContent = 'No size rows found. Try a clearer image with the full chart visible.';
+          chartStatus.classList.add('error');
+        } else {
+          chartStatus.textContent = `Cleaned chart: kept ${cleaned.kept} relevant lines and removed ${cleaned.removed} unrelated lines. Review it, then choose Use this chart.`;
+        }
+      } catch (error) {
+        chartStatus.textContent = `Could not read this image: ${error.message || 'try a clearer chart screenshot.'}`;
+        chartStatus.classList.add('error');
+      } finally {
+        if (worker) await worker.terminate();
+        if (imageUrl) URL.revokeObjectURL(imageUrl);
+      }
+      return;
+    }
+    if (!/\.(csv|tsv|txt)$/i.test(file.name)) {
+      chartStatus.textContent = 'Choose a PNG, JPG, WebP, CSV, TSV, or TXT file.';
+      chartStatus.classList.add('error');
+      return;
+    }
+    sizeChartText.value = await file.text();
+    chartStatus.textContent = `${file.name} loaded. Review the rows, then choose Use this chart.`;
+  }
+
+  chartFile.addEventListener('change', () => loadChartFile(chartFile.files?.[0]));
+  chartDrop.addEventListener('dragover', (event) => { event.preventDefault(); chartDrop.classList.add('dragover'); });
+  chartDrop.addEventListener('dragleave', () => chartDrop.classList.remove('dragover'));
+  chartDrop.addEventListener('drop', async (event) => {
+    event.preventDefault();
+    chartDrop.classList.remove('dragover');
+    const file = event.dataTransfer.files?.[0];
+    await loadChartFile(file);
+  });
+
+  sizeForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const measurements = [
+      { value: Number(document.getElementById('chestInput').value), limits: [84, 92, 100, 108, 116] },
+      { value: Number(document.getElementById('waistInput').value), limits: [70, 78, 86, 94, 102] },
+      { value: Number(document.getElementById('hipInput').value), limits: [90, 98, 106, 114, 122] },
+    ];
+    const chartMatch = recommendFromChart({ chest: measurements[0].value, waist: measurements[1].value, hips: measurements[2].value });
+    const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+    const index = Math.max(...measurements.map(({ value, limits }) => {
+      const match = limits.findIndex((limit) => value <= limit);
+      return match === -1 ? 5 : match;
+    }));
+    sizeResult.classList.remove('error');
+    sizeResult.classList.remove('result-pop');
+    void sizeResult.offsetWidth;
+    sizeResult.classList.add('result-pop');
+    sizeResult.innerHTML = chartMatch
+      ? `<strong>Product chart suggestion: ${escapeHTML(chartMatch)}</strong><br>Matched against the measurements available in the uploaded chart.`
+      : `<strong>General estimate: ${sizes[index]}</strong><br>For a looser fit, try ${sizes[Math.min(index + 1, 5)]}.`;
+  });
+
+  const scanVideo = document.getElementById('scanVideo');
+  const scanCanvas = document.getElementById('scanCanvas');
+  const scanStage = document.getElementById('scanStage');
+  const scanHeight = document.getElementById('scanHeight');
+  const scanSizeCalibration = document.getElementById('scanSizeCalibration');
+  const scanStartBtn = document.getElementById('scanStartBtn');
+  const scanCaptureBtn = document.getElementById('scanCaptureBtn');
+  const scanStopBtn = document.getElementById('scanStopBtn');
+  const scanStatus = document.getElementById('scanStatus');
+  const scanResult = document.getElementById('scanResult');
+  const frontShot = document.getElementById('frontShot');
+  const sideShot = document.getElementById('sideShot');
+  let scanStream = null;
+  let landmarker = null;
+  let scanFrame = 0;
+  let lastVideoTime = -1;
+  let lastDetection = null;
+  let scanPhase = 'front';
+  let frontMeasurement = null;
+  let candidatePhase = null;
+  let candidateSince = 0;
+  let previousPoseCenter = null;
+  const bonePairs = [[11,12],[11,13],[13,15],[15,17],[12,14],[14,16],[16,18],[11,23],[12,24],[23,24],[23,25],[25,27],[24,26],[26,28],[27,29],[29,31],[28,30],[30,32]];
+
+  function drawPose(points) {
+    const context = scanCanvas.getContext('2d');
+    if (scanCanvas.width !== scanVideo.videoWidth || scanCanvas.height !== scanVideo.videoHeight) {
+      scanCanvas.width = scanVideo.videoWidth;
+      scanCanvas.height = scanVideo.videoHeight;
+    }
+    context.clearRect(0, 0, scanCanvas.width, scanCanvas.height);
+    if (!points) return;
+    context.strokeStyle = '#b5eea7';
+    context.fillStyle = '#ffffff';
+    context.lineWidth = Math.max(2, scanCanvas.width / 300);
+    for (const [a, b] of bonePairs) {
+      if ((points[a].visibility ?? 1) < .35 || (points[b].visibility ?? 1) < .35) continue;
+      context.beginPath();
+      context.moveTo(points[a].x * scanCanvas.width, points[a].y * scanCanvas.height);
+      context.lineTo(points[b].x * scanCanvas.width, points[b].y * scanCanvas.height);
+      context.stroke();
+    }
+    for (const index of [0,11,12,23,24,27,28]) {
+      const point = points[index];
+      if ((point.visibility ?? 1) < .35) continue;
+      context.beginPath();
+      context.arc(point.x * scanCanvas.width, point.y * scanCanvas.height, Math.max(3, scanCanvas.width / 140), 0, Math.PI * 2);
+      context.fill();
+    }
+  }
+
+  function poseIsReady(result) {
+    const points = result?.landmarks?.[0];
+    if (!points || !result.segmentationMasks?.length) return false;
+    return [11,12,23,24].every((index) => (points[index]?.visibility ?? 0) > .2);
+  }
+
+  function detectedView(points) {
+    const shoulderWidth = Math.abs(points[11].x - points[12].x);
+    const torsoHeight = Math.abs(((points[23].y + points[24].y) - (points[11].y + points[12].y)) / 2);
+    if (torsoHeight < .05) return 'unknown';
+    const ratio = shoulderWidth / torsoHeight;
+    if (ratio > .72) return 'front';
+    if (ratio < .50) return 'side';
+    return 'turning';
+  }
+
+  function poseIsStable(points) {
+    const current = [points[11].x, points[11].y, points[12].x, points[12].y, points[23].x, points[23].y, points[24].x, points[24].y];
+    const stable = previousPoseCenter && current.every((value, index) => Math.abs(value - previousPoseCenter[index]) < .015);
+    previousPoseCenter = current;
+    return Boolean(stable);
+  }
+
+  function scanLoop() {
+    if (!scanStream || !landmarker) return;
+    if (scanVideo.readyState >= 2 && scanVideo.currentTime !== lastVideoTime) {
+      lastVideoTime = scanVideo.currentTime;
+      try {
+        lastDetection = landmarker.detectForVideo(scanVideo, performance.now());
+        const points = lastDetection.landmarks?.[0];
+        drawPose(points);
+        const ready = poseIsReady(lastDetection);
+        scanCaptureBtn.disabled = !ready;
+        if (!ready) {
+          candidatePhase = null; candidateSince = 0; previousPoseCenter = null;
+          scanStatus.textContent = 'Move back until your shoulders, hips, and full body are visible.';
+        } else {
+          const view = detectedView(points);
+          const stable = poseIsStable(points);
+          const expectedView = scanPhase === 'front' ? 'front' : 'side';
+          if (view === expectedView && stable) {
+            if (candidatePhase !== scanPhase) { candidatePhase = scanPhase; candidateSince = performance.now(); }
+            const remaining = Math.max(0, 1.5 - (performance.now() - candidateSince) / 1000);
+            scanStatus.textContent = `${scanPhase === 'front' ? 'Front' : 'Side'} view detected. Hold still; auto-capturing in ${remaining.toFixed(1)}s...`;
+            if (remaining <= 0) captureBodyView();
+          } else {
+            candidatePhase = null; candidateSince = 0;
+            if (scanPhase === 'front') scanStatus.textContent = view === 'side' ? 'Face the camera for the front view. It will capture automatically.' : 'Face the camera and hold still for automatic capture.';
+            else scanStatus.textContent = view === 'front' ? 'Turn 90 degrees to the side. It will capture automatically.' : 'Turn sideways and hold still for automatic capture.';
+          }
+        }
+      } catch (error) {
+        scanStatus.textContent = `Scan paused: ${error.message || 'could not read the camera frame.'}`;
+      }
+    }
+    scanFrame = requestAnimationFrame(scanLoop);
+  }
+  async function startBodyScan() {
+    if (!scanHeight.reportValidity()) return;
+    scanStartBtn.disabled = true;
+    scanStatus.textContent = 'Opening camera and loading the on-device pose model...';
+    scanResult.classList.remove('show');
+    frontMeasurement = null;
+    scanPhase = 'front';
+    candidatePhase = null;
+    candidateSince = 0;
+    previousPoseCenter = null;
+    frontShot.classList.remove('done');
+    sideShot.classList.remove('done');
+    frontShot.textContent = '1. Front view';
+    sideShot.textContent = '2. Side view';
+    scanCaptureBtn.textContent = 'Capture now (optional)';
+    try {
+      if (!navigator.mediaDevices?.getUserMedia) throw new Error('Camera access requires localhost or HTTPS.');
+      scanStream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } } });
+      scanVideo.srcObject = scanStream;
+      await scanVideo.play();
+      scanStage.classList.add('scan-video-on', 'scan-active');
+      const { FilesetResolver, PoseLandmarker } = await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/vision_bundle.mjs');
+      const vision = await FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/wasm');
+      landmarker = await PoseLandmarker.createFromOptions(vision, {
+        baseOptions: { modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task' },
+        runningMode: 'VIDEO', numPoses: 1, outputSegmentationMasks: true,
+      });
+      scanStartBtn.classList.add('hide');
+      scanStopBtn.classList.remove('hide');
+      scanCaptureBtn.disabled = true;
+      scanStatus.textContent = 'Model ready. Stand inside the outline with your full body visible.';
+      lastVideoTime = -1;
+      scanLoop();
+    } catch (error) {
+      stopBodyScan();
+      scanStartBtn.disabled = false;
+      scanStatus.textContent = `Could not start the body scan: ${error.message || 'check camera access and internet, then try again.'}`;
+    }
+  }
+
+  function measureView(result) {
+    const mask = result?.segmentationMasks?.[0];
+    const points = result?.landmarks?.[0];
+    if (!mask || !points) throw new Error('No clear body outline was detected.');
+    const values = mask.getAsFloat32Array();
+    const width = mask.width;
+    const height = mask.height;
+    let top = height, bottom = -1;
+    for (let y = 0; y < height; y += 1) {
+      let found = false;
+      for (let x = 0; x < width; x += 1) {
+        if (values[y * width + x] > .3) { found = true; break; }
+      }
+      if (found) { top = Math.min(top, y); bottom = Math.max(bottom, y); }
+    }
+    if (bottom <= top || (bottom - top) / height < .42) throw new Error('Move farther back so your full body, including your feet, fits in the frame.');
+    const shoulderY = (points[11].y + points[12].y) * .5 * height;
+    const hipY = (points[23].y + points[24].y) * .5 * height;
+    const bodyCenterX = Math.round((points[23].x + points[24].x) * .5 * width);
+    const waistY = Math.round(shoulderY + (hipY - shoulderY) * .62);
+    const rowWidths = [];
+    for (let y = Math.max(top, waistY - 3); y <= Math.min(bottom, waistY + 3); y += 1) {
+      const rowOffset = y * width;
+      let seed = -1;
+      for (let distance = 0; distance <= width * .08 && seed < 0; distance += 1) {
+        const leftTry = bodyCenterX - distance;
+        const rightTry = bodyCenterX + distance;
+        if (leftTry >= 0 && values[rowOffset + leftTry] > .3) seed = leftTry;
+        else if (rightTry < width && values[rowOffset + rightTry] > .3) seed = rightTry;
+      }
+      if (seed < 0) continue;
+      let left = seed, right = seed;
+      while (left > 0 && values[rowOffset + left - 1] > .3) left -= 1;
+      while (right < width - 1 && values[rowOffset + right + 1] > .3) right += 1;
+      if (right > left) rowWidths.push(right - left);
+    }
+    if (!rowWidths.length) throw new Error('Could not detect the waist outline. Try standing with your arms slightly away from your body.');
+    rowWidths.sort((a,b) => a-b);
+    return { waistToHeight: rowWidths[Math.floor(rowWidths.length / 2)] / (bottom - top) };
+  }
+
+  function captureBodyView() {
+    if (!poseIsReady(lastDetection)) {
+      scanStatus.textContent = 'Wait until your head and feet are detected, then try again.';
+      return;
+    }
+    try {
+      const measurement = measureView(lastDetection);
+      if (scanPhase === 'front') {
+        frontMeasurement = measurement;
+        scanPhase = 'side';
+        frontShot.classList.add('done');
+        frontShot.textContent = '1. Front view captured';
+        scanCaptureBtn.textContent = 'Capture side now (optional)';
+        scanStatus.textContent = 'Front view saved. Turn 90 degrees and hold still for automatic side capture.';
+        return;
+      }
+      sideShot.classList.add('done');
+      sideShot.textContent = '2. Side view captured';
+      const userHeight = Number(scanHeight.value);
+      const frontDiameter = frontMeasurement.waistToHeight * userHeight;
+      const sideDiameter = measurement.waistToHeight * userHeight;
+      const a = frontDiameter / 2;
+      const b = sideDiameter / 2;
+      const waist = Math.PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (a + 3 * b)));
+      if (!Number.isFinite(waist) || waist < 35 || waist > 180) throw new Error('The estimate looks unreliable. Try again with your whole body centered and visible.');
+      const chartSuggestion = recommendFromChart({ waist });
+      const usualSize = scanSizeCalibration.value;
+      const chartLine = chartSuggestion ? `<br><strong>Product chart suggestion (waist only): ${escapeHTML(chartSuggestion)}</strong>` : '';
+      const personalizedLine = usualSize ? `<br><strong>Your usual size reference: ${escapeHTML(usualSize)}</strong>` : '';
+      const noSizeLine = !chartSuggestion && !usualSize ? '<br><strong>No reliable size suggestion yet.</strong><br>Add a product chart or select your usual size above.' : '';
+      scanResult.innerHTML = `<strong>Rough waist estimate: about ${Math.round(waist)} cm</strong>${chartLine}${personalizedLine}${noSizeLine}<br>Height used for calibration: ${Math.round(userHeight)} cm<br><span>The camera estimate is not an exact body measurement. A chart suggestion uses waist only; use measured chest, waist, and hips for a better fit.</span>`;
+      scanResult.classList.add('show');
+      scanCaptureBtn.disabled = true;
+      stopBodyScan();
+      scanStatus.textContent = 'Scan complete. Your camera has been turned off.';
+    } catch (error) {
+      scanStatus.textContent = error.message || 'Could not estimate this view. Adjust your position and try again.';
+    }
+  }
+
+  function stopBodyScan() {
+    if (scanFrame) cancelAnimationFrame(scanFrame);
+    scanFrame = 0;
+    if (scanStream) scanStream.getTracks().forEach((track) => track.stop());
+    scanStream = null;
+    scanVideo.srcObject = null;
+    scanStage.classList.remove('scan-video-on', 'scan-active');
+    scanCanvas.getContext('2d')?.clearRect(0, 0, scanCanvas.width, scanCanvas.height);
+    if (landmarker) { landmarker.close(); landmarker = null; }
+    scanStartBtn.classList.remove('hide');
+    scanStartBtn.disabled = false;
+    scanCaptureBtn.disabled = true;
+    scanStopBtn.classList.add('hide');
+    lastDetection = null;
+    candidatePhase = null;
+    candidateSince = 0;
+    previousPoseCenter = null;
+  }
+  scanStartBtn.addEventListener('click', startBodyScan);
+  scanCaptureBtn.addEventListener('click', captureBodyView);
+  scanStopBtn.addEventListener('click', () => { stopBodyScan(); scanStatus.textContent = 'Camera stopped.'; });
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
